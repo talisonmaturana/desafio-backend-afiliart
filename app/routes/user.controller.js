@@ -21,7 +21,7 @@ module.exports = routes => {
     });
 
     routes.get('/users/:userId', (req, res) => {
-        Client.findById(req.params.userId)
+        User.findById(req.params.userId)
             .exec()
             .then(doc => {
                 console.log("From database ", doc);
