@@ -47,7 +47,7 @@ module.exports = routes => {
     });
 
     routes.get('/courses/:courseId', (req, res) => {
-        Client.findById(req.params.courseId)
+        Course.findById(req.params.courseId)
             .exec()
             .then(doc => {
                 console.log("From database ", doc);
