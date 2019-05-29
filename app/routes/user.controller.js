@@ -20,6 +20,22 @@ module.exports = routes => {
             });
     });
 
+    routes.get('/users/:userId', (req, res) => {
+        Client.findById(req.params.userId)
+            .exec()
+            .then(doc => {
+                console.log("From database ", doc);
+                if (doc)
+                    res.status(200).json(doc);
+                else
+                    res.status(404).json({ message: 'No valid entry found for provided ID.' });
+            })
+            .catch(error => {
+                console.log(err);
+                res.status(500).send({ error });
+            });
+    });
+
     routes.put('/users/:userId/', (req, res) => {
         const id = req.params.userId;
         User.update({ _id: id }, {
